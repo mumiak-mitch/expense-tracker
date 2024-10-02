@@ -1,0 +1,48 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h3 {
+    font-weight: 600;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.btn-center {
+    display: flex;
+    justify-content: center;
+}
+
+#expense-chart {
+    max-width: 100%;
+    height: 300px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.container {
+    max-width: 900px;
+}
+
+.list-group-item {
+    font-weight: 500;
+}
+
+#expense-chart {
+    max-width: 100%;
+    width: 200px;
+    height: 100px;
+    margin: 0 auto; 
+}
+
+.card-small {
+    max-width: 300px;  
+    margin: 0 auto;    
+    padding: 15px;    
+}
