@@ -25,25 +25,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderExpenses() {
-        expenseList.innerHTML = '';
+        const expenseList = document.getElementById('expense-list');
+        expenseList.innerHTML = ''; // Clear the existing list
+    
         expenses.forEach((expense, index) => {
-            const listItem = document.createElement('li');
-            listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
-            listItem.innerHTML = `
-                ${expense.description} - $${expense.amount.toFixed(2)}
-                <div>
-                    <button class="btn btn-warning btn-sm me-2" onclick="editExpense(${index})">Edit</button>
-                    <button class="btn btn-danger btn-sm" onclick="removeExpense(${index})">Remove</button>
-                </div>
-            `;
-            expenseList.appendChild(listItem);
+            const row = document.createElement('tr');
+    
+            // Expense name
+            const nameCell = document.createElement('td');
+            nameCell.textContent = expense.description;
+            row.appendChild(nameCell);
+    
+            // Expense amount
+            const amountCell = document.createElement('td');
+            amountCell.textContent = `$${expense.amount.toFixed(2)}`;
+            row.appendChild(amountCell);
+    
+            // Action buttons
+            const actionCell = document.createElement('td');
+            const actionDiv = document.createElement('div');
+            actionDiv.className = 'action-buttons';
+    
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.className = 'edit-btn';
+            editButton.onclick = () => editExpense(index);
+    
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-btn';
+            deleteButton.onclick = () => removeExpense(index);
+    
+            actionDiv.appendChild(editButton);
+            actionDiv.appendChild(deleteButton);
+            actionCell.appendChild(actionDiv);
+            row.appendChild(actionCell);
+    
+            // Append the row to the expense list (table body)
+            expenseList.appendChild(row);
         });
+    
         renderChart();
         updateBalance();
-    }
+    }    
 
     function renderChart() {
-        const labels = expenses.map(expense => expense.description);
+        const labels = expenses.map(expense => `${expense.description} (${expense.category})`);
         const data = expenses.map(expense => expense.amount);
 
         // Destroy existing chart instance if it exists to prevent duplication
@@ -97,10 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.editExpense = function(index) {
         const expense = expenses[index];
-        const newDescription = prompt('Enter new description:', expense.description);
+        const newDescription = prompt('Enter new name:', expense.description);
+        const newCategory = prompt('Enter new category:', expense.category);
         const newAmount = parseFloat(prompt('Enter new amount:', expense.amount));
-        if (newDescription && !isNaN(newAmount) && newAmount > 0) {
-            expenses[index] = { description: newDescription, amount: newAmount };
+        if (newDescription && newCategory && !isNaN(newAmount) && newAmount > 0) {
+            expenses[index] = { description: newDescription, category: newCategory, amount: newAmount };
             localStorage.setItem('expenses', JSON.stringify(expenses));
             renderExpenses();
         } else {
@@ -128,15 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
     expenseForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const description = document.getElementById('description').value.trim();
+        const category = document.getElementById('category').value;
         const amount = parseFloat(document.getElementById('amount').value);
 
-        if (description && !isNaN(amount) && amount > 0) {
-            expenses.push({ description, amount });
+        if (description && category && !isNaN(amount) && amount > 0) {
+            expenses.push({ description, category, amount });
             localStorage.setItem('expenses', JSON.stringify(expenses));
             expenseForm.reset();
             renderExpenses();
         } else {
-            alert('Please provide a valid description and amount.');
+            alert('Please provide valid inputs.');
         }
     });
 

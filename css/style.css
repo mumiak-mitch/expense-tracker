@@ -1,48 +1,236 @@
+/* General Styling */
 body {
-    font-family: 'Poppins', sans-serif;
-}
-
-h1, h3 {
-    font-weight: 600;
-}
-
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
     padding: 20px;
-}
-
-.btn-center {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-#expense-chart {
-    max-width: 100%;
-    height: 300px;
-}
-
-.text-center {
+h1, h2, h3 {
+    color: #44312b; /* Dark brown color for headings */
     text-align: center;
 }
 
-.container {
-    max-width: 900px;
+table {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
 }
 
-.list-group-item {
-    font-weight: 500;
+th {
+    background-color: #44312b; /* Header background color */
+    color: #fff; /* White text color */
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2em;
 }
 
-#expense-chart {
-    max-width: 100%;
-    width: 200px;
-    height: 100px;
-    margin: 0 auto; 
+td {
+    padding: 10px;
+    border: 1px solid #ddd; /* Light border around table cells */
 }
 
-.card-small {
-    max-width: 300px;  
-    margin: 0 auto;    
-    padding: 15px;    
+input, select {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 60%;
+    padding: 10px;
+    background-color: #36A2EB; /* Blue background for buttons */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+}
+
+button:hover {
+    background-color: #1e7bc8; /* Darker blue on hover */
+}
+
+/* Center the buttons */
+.centered-button {
+    text-align: center;
+}
+
+/* Flexbox container for side-by-side layout of forms */
+#form-section-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+#main-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+#form-section {
+    flex: 1;
+    margin: 10px; /* Adjust margin for mobile responsiveness */
+}
+
+/* Responsive Overview Section */
+#overview-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Overview table styling */
+#overview-table td {
+    padding: 10px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* Expenses Section Styling */
+#expenses-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Expenses table */
+#expenses-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#expenses-table th, #expenses-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+#expenses-table th {
+    background-color: #44312b; /* Dark brown header */
+    color: #fff;
+}
+
+#expenses-table td {
+    background-color: #f9f9f9; /* Light gray background for table rows */
+    font-size: 1.1em;
+}
+
+/* Action buttons inside the expenses table */
+#expenses-table .action-buttons {
+    display: flex;
+    justify-content: center; /* Center buttons */
+}
+
+.action-buttons button {
+    margin: 0 5px;
+    padding: 8px 12px;
+    background-color: #36A2EB;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action-buttons button.edit-btn {
+    background-color: #FFA500; /* Orange for the edit button */
+}
+
+.action-buttons button.delete-btn {
+    background-color: #FF6347; /* Red for the delete button */
+}
+
+.action-buttons button:hover {
+    opacity: 0.9; /* Slight opacity change on hover */
+}
+
+/* Styling for the list of expenses */
+#expense-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#expense-list li {
+    background-color: #f9f9f9; /* Light gray background */
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 4px;
+    width: 100%;
+    max-width: 600px;
+    margin: 5px auto;
+}
+
+/* Chart Section */
+#chart-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 600px;
+}
+
+canvas {
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive Layout Adjustments */
+
+/* Make layout responsive on smaller screens */
+@media (max-width: 768px) {
+    /* Stack forms vertically on smaller screens */
+    #form-section-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #form-section {
+        width: 100%; /* Full width on smaller screens */
+        max-width: 400px;
+    }
+
+    table {
+        width: 100%; /* Make tables responsive */
+        max-width: 100%;
+    }
+
+    /* Adjust buttons for smaller screens */
+    button {
+        width: 80%; /* Slightly wider buttons */
+    }
+
+    #expenses-section, #overview-section, #chart-section {
+        width: 100%;
+        max-width: 100%; /* Full width sections on smaller screens */
+    }
+
+    #expense-list li {
+        width: 100%;
+    }
 }
